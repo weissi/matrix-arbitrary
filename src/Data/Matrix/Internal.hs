@@ -59,35 +59,34 @@ toLists m@(Matrix arr) =
                then let (mes, es'') = splitAt c es'
                      in doIt c es'' (r-1) (acc++[mes])
                else acc
-        (rows, cols) = shape m
-     in doIt cols (A.elems arr) rows []
+        (mRows, mCols) = shape m
+     in doIt mCols (A.elems arr) mRows []
 
 fromLists :: [[a]] -> Matrix a
 fromLists es =
-    let rows :: Int
-        rows = length es
-        cols' :: [Int]
-        cols' = map length es
-        cols :: Int
-        cols =
-            let minCols = minimum cols'
-                maxCols = minimum cols'
+    let mRows :: Int
+        mRows = length es
+        mCols' :: [Int]
+        mCols' = map length es
+        mCols :: Int
+        mCols =
+            let minCols = minimum mCols'
+                maxCols = minimum mCols'
              in if minCols == maxCols
                    then minCols
                    else error "fromLists: applied to lists of different sizes"
-     in (rows >< cols) $ concat es
+     in (mRows >< mCols) $ concat es
 
 instance (Show e) => (Show (Matrix e)) where
     show m = (sizes++) . dsp . map (map show) . toLists $ m
         where sizes = "("++show (rows m)++"><"++show (cols m)++")\n"
-
-dsp as = (++" ]") . (" ["++) . init . drop 2 . unlines .
-             map (" , "++) . map unwords' $ transpose mtp
-    where
-        mt = transpose as
-        longs = map (maximum . map length) mt
-        mtp = zipWith (\a b -> map (pad a) b) longs mt
-        pad n str = replicate (n - length str) ' ' ++ str
-        unwords' = concat . intersperse ", "
+              dsp as =
+                  let mt = transpose as
+                      longs = map (maximum . map length) mt
+                      mtp = zipWith (\a b -> map (pad a) b) longs mt
+                      pad n str = replicate (n - length str) ' ' ++ str
+                      unwords' = concat . intersperse ", "
+                  in (++" ]") . (" ["++) . init . drop 2 . unlines .
+                         map (" , "++) . map unwords' $ transpose mtp
 
 -- vim: set fileencoding=utf8 :

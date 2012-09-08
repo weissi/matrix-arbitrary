@@ -31,7 +31,6 @@ module Numeric.MatrixOperations
     where
 
 -- # STDLIB
-import Data.Tuple (swap)
 import Data.Array.IArray (Array)
 import qualified Data.Array.IArray as A
 
@@ -51,7 +50,9 @@ import Data.Matrix.Internal (Matrix(Matrix))
     let rT = trans r
      in if (snd . shape) l == (fst . shape) r
            then fromLists $
-                    [map (sum . zipWith (*) r) (toLists rT) | r <- (toLists l)]
+                    [map (sum . zipWith (*) row) (toLists rT)
+                    | row <- (toLists l)
+                    ]
            else error "|*| matrix multiplication shape error"
 
 lu :: (Num e, Fractional e)
