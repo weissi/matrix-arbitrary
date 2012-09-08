@@ -1,0 +1,26 @@
+Name:           matrix-arbitrary
+Version:        0.0.0.1
+License:        LGPL-3
+License-File:   LICENSE
+Author:         Johannes Weiß
+Maintainer:     weiss@tux4u.de
+Cabal-Version:  >= 1.10
+Build-Type:     Simple
+Category:       Math
+Description:    An Arbitrary Element Types Linear Algebra Matrix Library for
+                Haskell.
+Synopsis:       An Arbitrary Element Types Linear Algebra Matrix Library for
+                Haskell.
+
+Source-Repository head
+    Type:     git
+    Location: git://github.com/weissi/matrix-arbitrary.git
+
+Library
+    Build-Depends:    base == 4.5.*
+    Default-Language: Haskell2010
+    Exposed-modules:
+    hs-source-dirs:   src
+    GHC-Options:      -Wall
+    GHC-Options:      -Werror
+    GHC-Options:      -rtsopts -auto-all -caf-all
