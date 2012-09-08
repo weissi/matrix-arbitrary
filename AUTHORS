@@ -1,0 +1,8 @@
+AUTHORS
+=======
+- Johannes Weiß <weiss@tux4u.de
+
+CREDITS
+=======
+- Alberto Ruiz for the Matrix `instance Show Matrix` code
+- Matthew Donadio for the LU/matrix inversion code
