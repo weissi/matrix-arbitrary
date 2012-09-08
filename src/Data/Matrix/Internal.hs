@@ -21,7 +21,7 @@
 -}
 
 module Data.Matrix.Internal
-    ( Matrix(Matrix)
+    ( Matrix(..)
     , (><)
     , rows, cols, shape
     , trans
@@ -89,4 +89,6 @@ instance (Show e) => (Show (Matrix e)) where
                   in (++" ]") . (" ["++) . init . drop 2 . unlines .
                          map (" , "++) . map unwords' $ transpose mtp
 
+instance (Eq e) => Eq (Matrix e) where
+    (==) (Matrix l) (Matrix r) = l == r
 -- vim: set fileencoding=utf8 :

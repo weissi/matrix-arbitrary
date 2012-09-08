@@ -17,11 +17,21 @@ Source-Repository head
     Location: git://github.com/weissi/matrix-arbitrary.git
 
 Library
-    Build-Depends:    base  == 4.5.*,
+    Build-Depends:    base  == 4.*,
                       array == 0.4.*
     Default-Language: Haskell2010
-    Exposed-modules:  Data.Matrix,
+    Exposed-Modules:  Data.Matrix
                       Numeric.MatrixOperations
-    hs-source-dirs:   src
+    Other-Modules:    Data.Matrix.Internal
+    HS-Source-Dirs:   src
     GHC-Options:      -Wall
     GHC-Options:      -rtsopts -auto-all -caf-all
+
+Test-Suite SimpleMatrixTests
+    Type:             exitcode-stdio-1.0
+    Default-Language: Haskell2010
+    Build-Depends:    matrix-arbitrary,
+                      base == 4.*,
+                      HTF == 0.9.*
+    HS-Source-Dirs:   test
+    Main-Is:          SimpleMatrixTests.hs
